@@ -7,7 +7,7 @@ import torch.utils.data as Data
 from torch.nn import functional as F
 import matplotlib.pyplot as plt
 
-EPOCH = 10
+EPOCH = 100000
 BATCH_SIZE = 4000
 
 train_data_list = []
@@ -81,7 +81,7 @@ for epoch in range(EPOCH):
         opt.zero_grad()
         loss.backward()
         opt.step()
-    if epoch % 1 == 0:
+    if epoch % 100 == 0:
         # print("Loss:%.4f"%loss.cpu().data.numpy())
         test_output = cnn(test_data)
         pred_y = torch.max(test_output, 1)[1].cuda().data  # move the computation in GPU
